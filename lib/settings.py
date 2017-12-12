@@ -1,4 +1,8 @@
-SERVER_IP = "155.41.82.139"
+import urllib2
+
+ret = urllib2.urlopen('https://enabledns.com/ip')
+
+SERVER_IP = ret.read()
 SERVER_PORT = 50090
 
 WINDOW_WIDTH = 697
