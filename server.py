@@ -7,14 +7,14 @@ import urllib2
 ret = urllib2.urlopen('https://enabledns.com/ip')
 
 #configure IP of the hosting server
-SERVER_IP = ret.read()
+IP_SERVER = ret.read()
 
 r = redis.Redis(
     host='redis-16907.c15.us-east-1-4.ec2.cloud.redislabs.com',
     port=16907,
     password='pingpong')
 
-r.set("ip",SERVER_IP)
+r.set("ip",IP_SERVER)
 r.get("ip")
 
 print "This is first one:"

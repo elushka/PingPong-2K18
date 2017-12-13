@@ -6,6 +6,8 @@ r = redis.Redis(
     port=16907,
     password='pingpong')
 
+print r.get("ip")
+
 SERVER_IP = r.get("ip")
 SERVER_PORT = 50090
 
