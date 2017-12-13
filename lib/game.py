@@ -48,7 +48,7 @@ class Game(pyglet.window.Window):
 			pyglet.clock.unschedule(self.ball.moving)
 			self.running = False
 
-	def load_sprites(self):    #loading images and configs from the settings file
+	def load_sprites(self):
 		self.score_lp = pyglet.text.Label('', font_size=15, x=settings.WINDOW_WIDTH/2 - 30, y=settings.WINDOW_HEIGHT - 15, anchor_x='center', anchor_y='center')
 		self.score_rp = pyglet.text.Label('', font_size=15, x=settings.WINDOW_WIDTH/2 + 30, y=settings.WINDOW_HEIGHT - 15, anchor_x='center', anchor_y='center')
 		self.racket_left = Racket(pyglet.resource.image(settings.RACKET_IMG)).center_anchor_y(settings.WINDOW_HEIGHT)
@@ -66,11 +66,11 @@ class Game(pyglet.window.Window):
 
 	def define_players(self, server_response):
 		if self.me == sorted(server_response.keys())[0]: #the first client connection
-			self.master_client = True	#one who presses the key first becomes the master
+			self.master_client = True
 			self.racket_me = self.racket_left
 			self.racket_vs = self.racket_right
 		else:
-			self.master_client = False  #other player automatically becomes the slave
+			self.master_client = False
 			self.racket_me = self.racket_right
 			self.racket_vs = self.racket_left
 		self.score_lp.text = str(self.score_right)
@@ -83,15 +83,13 @@ class Game(pyglet.window.Window):
 			self.ball.prevent_stick(player)
 		if self.ball.check_collision_laterals(settings.WINDOW_HEIGHT):
 			self.ball.hit_lateral()
-
+		
 		side = self.ball.check_collision_sides(settings.WINDOW_WIDTH)
 
-		#incrementing score for two sides
 		if side == 1:
 			self.score_left += 1
 		elif side == 2:
 			self.score_right += 1
-		#reset the game every time a score is made.
 		if side > 0:
 			self.pause()
 			self.reset()
@@ -122,7 +120,6 @@ class Game(pyglet.window.Window):
 				if playerid != self.me:
 					self.racket_vs.y = data[playerid]['racket']['y']
 
-					#let master update both the master and the slave
 					if not self.master_client:
 						self.ball.x = data[playerid]['ball']['x']
 						self.ball.y = data[playerid]['ball']['y']
@@ -139,7 +136,7 @@ class Game(pyglet.window.Window):
 			self.run()
 		else:
 			self.pause()
-
+	
 		if self.master_client:
 			self.on_collision()
 

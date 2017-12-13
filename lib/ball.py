@@ -4,8 +4,8 @@ class Ball(sprobj.SprObj):
 
 	MOVING_RIGHT = True
 	MOVING_TOP = True
-	HORIZONTAL_MOVEMENT = 2.4
-	VERTICAL_MOVEMENT = 2
+	HORIZONTAL_MOVIMENT = 2.4
+	VERTICAL_MOVIMENT = 2
 
 	def hit_racket(self):
 		self.MOVING_RIGHT = not self.MOVING_RIGHT
@@ -13,7 +13,6 @@ class Ball(sprobj.SprObj):
 	def hit_lateral(self):
 		self.MOVING_TOP = not self.MOVING_TOP
 
-	#ball speed control
 	def prevent_stick(self, racket):
 		self.move(self.get_x_moviment() *.1* racket.width, 0)
 
@@ -22,17 +21,16 @@ class Ball(sprobj.SprObj):
 
 	def get_x_moviment(self):
 		if self.MOVING_RIGHT:
-			return self.HORIZONTAL_MOVEMENT
+			return self.HORIZONTAL_MOVIMENT
 		else:
-			return -self.HORIZONTAL_MOVEMENT
+			return -self.HORIZONTAL_MOVIMENT
 
 	def get_y_moviment(self):
 		if self.MOVING_TOP:
-			return self.VERTICAL_MOVEMENT
+			return self.VERTICAL_MOVIMENT
 		else:
-			return -self.VERTICAL_MOVEMENT
-
-	#helper function for checking when the ball goes out of bound for sides.
+			return -self.VERTICAL_MOVIMENT
+			
 	def check_collision_sides(self, window_width):
 		if(self.left < 1):
 			print "Left collision detected"

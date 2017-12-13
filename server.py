@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import socket, select, sys, time, simplejson
 import lib.settings as settings
-
+ 
 buffer_size = 2000
 delay = 0.0
 rackets = {}
@@ -17,7 +17,6 @@ class GameServer:
         self.server.bind((host, port))
         self.server.listen(0)
 
-    #loop for continuous data transfer
     def main_loop(self):
         self.input_list.append(self.server)
         while 1:
@@ -35,7 +34,6 @@ class GameServer:
                 else:
                     self.on_recv()
 
-    #feedback for server connection
     def on_accept(self):
         clientsock, clientaddr = self.server.accept()
         print clientaddr, "has connected"
@@ -55,7 +53,6 @@ class GameServer:
 
 if __name__ == '__main__':
         server = GameServer(settings.SERVER_IP, settings.SERVER_PORT)
-        print settings.SERVER_IP
         print "Server listening..."
         try:
             server.main_loop()
