@@ -56,6 +56,7 @@ class Game(pyglet.window.Window):
 		self.ball = Ball(pyglet.resource.image(settings.BALL_IMG)).center_anchor_y(settings.WINDOW_HEIGHT).center_anchor_x(settings.WINDOW_WIDTH)
 		self.racket_right.x = settings.WINDOW_WIDTH - self.racket_right.width
 		self.racket_me = self.racket_left
+		self.ball.reset()
 
 	def reset(self):
 		self.racket_left = Racket(pyglet.resource.image(settings.RACKET_IMG)).center_anchor_y(settings.WINDOW_HEIGHT)
@@ -63,6 +64,7 @@ class Game(pyglet.window.Window):
 		self.ball = Ball(pyglet.resource.image(settings.BALL_IMG)).center_anchor_y(settings.WINDOW_HEIGHT).center_anchor_x(settings.WINDOW_WIDTH)
 		self.racket_right.x = settings.WINDOW_WIDTH - self.racket_right.width
 		self.racket_me = self.racket_left
+		self.ball.reset()
 
 	def define_players(self, server_response):
 		if self.me == sorted(server_response.keys())[0]: #the first client connection
