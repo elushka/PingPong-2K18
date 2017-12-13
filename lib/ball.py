@@ -2,8 +2,8 @@ import sprobj
 from random import *
 
 class Ball(sprobj.SprObj):
-	HORIZONTAL_MOVEMENT = random.uniform(2,5)
-	VERTICAL_MOVEMENT = random.uniform(2,5)
+	HORIZONTAL_MOVEMENT = uniform(2,5)
+	VERTICAL_MOVEMENT = uniform(2,5)
 	MOVING_RIGHT = True
 	MOVING_LEFT = True
 	if(randint(0,1)):
@@ -16,8 +16,8 @@ class Ball(sprobj.SprObj):
 		MOVING_TOP = False
 		
 	def reset(self):
-		self.HORIZONTAL_MOVEMENT = random.uniform(2,5)
-		self.VERTICAL_MOVEMENT = random.uniform(2,5)
+		self.HORIZONTAL_MOVEMENT = uniform(2,5)
+		self.VERTICAL_MOVEMENT = uniform(2,5)
 		if(randint(0,1)):
 			self.MOVING_RIGHT = True
 		else:
