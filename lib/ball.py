@@ -5,8 +5,8 @@ class Ball(sprobj.SprObj):
 
 	MOVING_RIGHT = True
 	MOVING_TOP = True
-	HORIZONTAL_MOVEMENT = randint(1, 3)
-	VERTICAL_MOVEMENT = randint(1, 3)
+	HORIZONTAL_MOVEMENT = randint(-10, 10)
+	VERTICAL_MOVEMENT = randint(-10, 10)
 
 	def hit_racket(self):
 		self.MOVING_RIGHT = not self.MOVING_RIGHT

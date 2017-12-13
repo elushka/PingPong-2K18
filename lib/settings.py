@@ -6,7 +6,7 @@ r = redis.Redis(
     port=16907,
     password='pingpong')
 
-print "This is from settings file"
+print "Connected to Server IP:"
 print r.get("ip")
 #
 SERVER_IP = r.get("ip")

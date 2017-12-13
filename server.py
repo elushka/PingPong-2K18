@@ -14,9 +14,9 @@ r = redis.Redis(
 r.set("ip",IP_SERVER)
 r.get("ip")
 
-print "This is first one:"
+print "Server IP from database:"
 print r.get("ip")
-print "This is second one:"
+print "Database link:"
 print r
 
 buffer_size = 2000
