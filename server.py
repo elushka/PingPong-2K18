@@ -1,31 +1,10 @@
 #!/usr/bin/python
-import socket, select, sys, time, simplejson, redis, urllib2
-
-ret = urllib2.urlopen('https://enabledns.com/ip')
-
-#configure IP of the hosting server
-IP_SERVER = ret.read()
-
-r = redis.Redis(
-    host='redis-16907.c15.us-east-1-4.ec2.cloud.redislabs.com',
-    port=16907,
-    password='pingpong')
-
-r.set("ip",IP_SERVER)
-r.get("ip")
-
-print "This is first one:"
-print r.get("ip")
-print "This is second one:"
-print r
+import socket, select, sys, time, simplejson
+import lib.settings as settings
 
 buffer_size = 2000
 delay = 0.0
 rackets = {}
-SERVER_IP = r.get("ip")
-SERVER_PORT = 50090
-
-r.connection_pool.disconnect()
 
 class GameServer:
 
@@ -75,8 +54,8 @@ class GameServer:
         self.s.send(simplejson.dumps(rackets))
 
 if __name__ == '__main__':
-        server = GameServer(SERVER_IP, SERVER_PORT)
-        print SERVER_IP
+        server = GameServer(settings.SERVER_IP, settings.SERVER_PORT)
+        print settings.SERVER_IP
         print "Server listening..."
         try:
             server.main_loop()
