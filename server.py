@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import socket, select, sys, time, simplejson
-import lib.settings as settings
+
 import redis
 import urllib2
 
@@ -22,9 +22,13 @@ print r.get("ip")
 print "This is second one:"
 print r
 
+time.sleep(2)
+
 buffer_size = 2000
 delay = 0.0
 rackets = {}
+
+import lib.settings as settings
 
 class GameServer:
 
