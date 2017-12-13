@@ -83,7 +83,7 @@ class Game(pyglet.window.Window):
 			self.ball.prevent_stick(player)
 		if self.ball.check_collision_laterals(settings.WINDOW_HEIGHT):
 			self.ball.hit_lateral()
-		
+
 		side = self.ball.check_collision_sides(settings.WINDOW_WIDTH)
 
 		if side == 1:
@@ -136,7 +136,7 @@ class Game(pyglet.window.Window):
 			self.run()
 		else:
 			self.pause()
-	
+
 		if self.master_client:
 			self.on_collision()
 

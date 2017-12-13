@@ -1,10 +1,29 @@
 #!/usr/bin/python
-import socket, select, sys, time, simplejson
-import lib.settings as settings
- 
+import socket, select, sys, time, simplejson, redis, urllib2
+
+ret = urllib2.urlopen('https://enabledns.com/ip')
+
+#configure IP of the hosting server
+IP_SERVER = ret.read()
+
+r = redis.Redis(
+    host='redis-16907.c15.us-east-1-4.ec2.cloud.redislabs.com',
+    port=16907,
+    password='pingpong')
+
+r.set("ip",IP_SERVER)
+r.get("ip")
+
+print "This is first one:"
+print r.get("ip")
+print "This is second one:"
+print r
+
 buffer_size = 2000
 delay = 0.0
 rackets = {}
+SERVER_IP = r.get("ip")
+SERVER_PORT = 50090
 
 class GameServer:
 
@@ -17,6 +36,7 @@ class GameServer:
         self.server.bind((host, port))
         self.server.listen(0)
 
+    #loop for continuous data transfer
     def main_loop(self):
         self.input_list.append(self.server)
         while 1:
@@ -34,6 +54,7 @@ class GameServer:
                 else:
                     self.on_recv()
 
+    #feedback for server connection
     def on_accept(self):
         clientsock, clientaddr = self.server.accept()
         print clientaddr, "has connected"
@@ -52,7 +73,8 @@ class GameServer:
         self.s.send(simplejson.dumps(rackets))
 
 if __name__ == '__main__':
-        server = GameServer(settings.SERVER_IP, settings.SERVER_PORT)
+        server = GameServer(SERVER_IP, SERVER_PORT)
+        print SERVER_IP
         print "Server listening..."
         try:
             server.main_loop()
