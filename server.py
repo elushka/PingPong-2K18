@@ -25,6 +25,8 @@ rackets = {}
 SERVER_IP = r.get("ip")
 SERVER_PORT = 50090
 
+r.connection_pool.disconnect()
+
 class GameServer:
 
     def __init__(self, host, port):
