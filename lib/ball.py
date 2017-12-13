@@ -2,30 +2,30 @@ import sprobj
 from random import *
 
 class Ball(sprobj.SprObj):
-	HORIZONTAL_MOVEMENT = randint(-10, 10)
-	VERTICAL_MOVEMENT = randint(-10, 10)
+	HORIZONTAL_MOVEMENT = randint(1, 10)
+	VERTICAL_MOVEMENT = randint(1, 10)
 	MOVING_RIGHT = True
 	MOVING_LEFT = True
-	if HORIZONTAL_MOVEMENT > 0:
+	if(randint(0,1)):
 		MOVING_RIGHT = True
 	else:
 		MOVING_RIGHT = False
-	if VERTICAL_MOVEMENT > 0:
+	if(randint(0,1)):
 		MOVING_TOP = True
 	else:
 		MOVING_TOP = False
 		
 	def reset(self):
-		HORIZONTAL_MOVEMENT = randint(-10, 10)
-		VERTICAL_MOVEMENT = randint(-10, 10)
-		if HORIZONTAL_MOVEMENT > 0:
-			MOVING_RIGHT = True
+		self.HORIZONTAL_MOVEMENT = randint(1, 10)
+		self.VERTICAL_MOVEMENT = randint(1, 10)
+		if(randint(0,1)):
+			self.MOVING_RIGHT = True
 		else:
-			MOVING_RIGHT = False
-		if VERTICAL_MOVEMENT > 0:
-			MOVING_TOP = True
+			self.MOVING_RIGHT = False
+		if(randint(0,1)):
+			self.MOVING_TOP = True
 		else:
-			MOVING_TOP = False
+			self.MOVING_TOP = False
 
 	def hit_racket(self):
 		self.MOVING_RIGHT = not self.MOVING_RIGHT
