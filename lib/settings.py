@@ -1,9 +1,5 @@
-import urllib2
-
-ret = urllib2.urlopen('https://enabledns.com/ip')
-
 #configure IP of the hosting server
-SERVER_IP = ret.read()
+SERVER_IP = '155.41.46.241'
 SERVER_PORT = 50090
 
 #pyglet window size
