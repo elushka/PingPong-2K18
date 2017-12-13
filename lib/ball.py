@@ -4,6 +4,8 @@ from random import *
 class Ball(sprobj.SprObj):
 	HORIZONTAL_MOVEMENT = randint(-10, 10)
 	VERTICAL_MOVEMENT = randint(-10, 10)
+	MOVING_RIGHT = True
+	MOVING_LEFT = True
 	if HORIZONTAL_MOVEMENT > 0:
 		MOVING_RIGHT = True
 	else:
