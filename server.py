@@ -1,8 +1,6 @@
 #!/usr/bin/python
-import socket, select, sys, time, simplejson
-
-import redis
-import urllib2
+import socket, select, sys, time, simplejson, redis, urllib2
+import lib.settings as settings
 
 ret = urllib2.urlopen('https://enabledns.com/ip')
 
@@ -22,13 +20,11 @@ print r.get("ip")
 print "This is second one:"
 print r
 
-time.sleep(2)
-
 buffer_size = 2000
 delay = 0.0
 rackets = {}
-
-import lib.settings as settings
+SERVER_IP = r.get("ip")
+SERVER_PORT = 50090
 
 class GameServer:
 
@@ -78,8 +74,8 @@ class GameServer:
         self.s.send(simplejson.dumps(rackets))
 
 if __name__ == '__main__':
-        server = GameServer(settings.SERVER_IP, settings.SERVER_PORT)
-        print settings.SERVER_IP
+        server = GameServer(SERVER_IP, SERVER_PORT)
+        print SERVER_IP
         print "Server listening..."
         try:
             server.main_loop()
