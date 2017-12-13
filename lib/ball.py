@@ -1,11 +1,12 @@
 import sprobj
+from random import *
 
 class Ball(sprobj.SprObj):
 
 	MOVING_RIGHT = True
 	MOVING_TOP = True
-	HORIZONTAL_MOVEMENT = 2.4
-	VERTICAL_MOVEMENT = 2
+	HORIZONTAL_MOVEMENT = randint(1, 3)
+	VERTICAL_MOVEMENT = randint(1, 3)
 
 	def hit_racket(self):
 		self.MOVING_RIGHT = not self.MOVING_RIGHT
