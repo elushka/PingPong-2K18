@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import socket, select, sys, time, simplejson, redis, urllib2
-import lib.settings as settings
 
 ret = urllib2.urlopen('https://enabledns.com/ip')
 
