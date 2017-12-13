@@ -1,6 +1,26 @@
 #!/usr/bin/python
 import socket, select, sys, time, simplejson
 import lib.settings as settings
+import redis
+import urllib2
+
+ret = urllib2.urlopen('https://enabledns.com/ip')
+
+#configure IP of the hosting server
+SERVER_IP = ret.read()
+
+r = redis.Redis(
+    host='redis-16907.c15.us-east-1-4.ec2.cloud.redislabs.com',
+    port=16907,
+    password='pingpong')
+
+r.set("ip",SERVER_IP)
+r.get("ip")
+
+print "This is first one:"
+print r.get("ip")
+print "This is second one:"
+print r
 
 buffer_size = 2000
 delay = 0.0

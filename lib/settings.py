@@ -1,5 +1,12 @@
+import redis
+
 #configure IP of the hosting server
-SERVER_IP = '155.41.46.241'
+r = redis.Redis(
+    host='redis-16907.c15.us-east-1-4.ec2.cloud.redislabs.com',
+    port=16907,
+    password='pingpong')
+
+SERVER_IP = r.get("ip")
 SERVER_PORT = 50090
 
 #pyglet window size
